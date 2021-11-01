@@ -1,6 +1,6 @@
-import yaml from 'js-yaml';
-import fs from 'fs';
-import deepmerge from 'deepmerge'
+const yaml = require('js-yaml');
+const fs = require('fs');
+const deepmerge = require('deepmerge');
 
 /**
  * Docker Compose File class.  
@@ -113,4 +113,4 @@ class DockerComposeFile {
 }
 
 
-export default DockerComposeFile;
+module.exports = DockerComposeFile;
