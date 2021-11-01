@@ -9,7 +9,7 @@ Object merging preformed by [deepmerge](https://www.npmjs.com/package/deepmerge)
 # Usage [jsdocs](https://giftora.github.io/dynamic-docker-compose/)
 Create an instance of the class like so.
 ```javascript
-import DockerComposeFile from '../src/DockerComposeFile';
+import DockerComposeFile from 'dynamic-docker-compose';
 const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml`);
 // or 
 const yamlString = 
@@ -42,7 +42,7 @@ After you have created an instance of DockerComposeFile you can modify the YAML 
 
 Multiple files can be passed to the constructor 
 ```javascript
-import DockerComposeFile from '../src/DockerComposeFile';
+import DockerComposeFile from 'dynamic-docker-compose';
 const composeFile = new DockerComposeFile(
   `${__dirname}/docker-compose1.yml`, 
   `${__dirname}/docker-compose2.yml`
@@ -100,7 +100,7 @@ services:
 
 
 ```javascript
-import DockerComposeFile from '../src/DockerComposeFile';
+import DockerComposeFile from 'dynamic-docker-compose';
 const composeFile = new DockerComposeFile(
   `version.docker-compose.yml`, 
   `network.docker-compose.yml`,
