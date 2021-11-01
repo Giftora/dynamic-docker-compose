@@ -10,7 +10,7 @@ import deepmerge from 'deepmerge'
 class DockerComposeFile {
     /**
      * Creates a DockerComposeFile instance with provided docker-compose.yml file or string.
-     * @param {String} composeFileString Either a path to a docker-compose.yml file or a full yaml string.
+     * @param {String|DockerComposeFile} composeFileString a path to a docker-compose.yml file, a full yaml string or a DockerComposeFile instance.
      * @example
      * const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml`);
      * @example
