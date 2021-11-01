@@ -1,0 +1,16 @@
+services:
+  vpn-${REGION}-${ID}:
+    image: vpn
+    container_name: vpn-${REGION}-${ID}
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - proxy
+    volumes:
+      - ./vpn/volumes/gluton/vpn-${REGION}:/gluetun
+      - ./data:/data
+    environment:
+      - REGION=${REGION}
+      - OPENVPN_USER
+      - VPNSP=private internet access
+    restart: always

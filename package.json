@@ -1,0 +1,20 @@
+{
+  "name": "dynamic-docker-compose",
+  "version": "1.0.0",
+  "main": "src/DockerComposeFile.mjs",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn jest"
+  },
+  "dependencies": {
+    "clone": "^2.1.2",
+    "deepmerge": "^4.2.2",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "jest": "^27.1.0"
+  }
+}

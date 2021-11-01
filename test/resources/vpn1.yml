@@ -1,0 +1,10 @@
+services:
+  vpn:
+    volumes:
+      - ./vpn/volumes/gluton/:/gluetun
+      - ./data:/data
+    environment:
+      - REGION
+      - OPENVPN_USER
+      - VPNSP=private internet access
+    restart: always

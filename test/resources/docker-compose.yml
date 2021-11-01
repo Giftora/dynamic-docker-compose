@@ -1,0 +1,20 @@
+networks:
+  proxy:
+    driver: bridge
+services:
+  vpn:
+    cap_add:
+      - NET_ADMIN
+    container_name: vpn
+    environment:
+      - REGION
+      - OPENVPN_USER
+      - VPNSP=private internet access
+    image: vpn
+    networks:
+      - proxy
+    restart: always
+    volumes:
+      - ./vpn/volumes/gluton/:/gluetun
+      - ./data:/data
+version: '3'

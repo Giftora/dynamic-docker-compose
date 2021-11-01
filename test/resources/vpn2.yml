@@ -1,0 +1,10 @@
+services:
+  vpn:
+    image: vpn
+    container_name: vpn
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - proxy
+    environment:
+      - REGION

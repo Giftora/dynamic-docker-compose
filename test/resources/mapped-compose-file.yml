@@ -1,0 +1,35 @@
+networks:
+  proxy:
+    driver: bridge
+services:
+  vpn-US_Seattle-2:
+    cap_add:
+      - NET_ADMIN
+    container_name: vpn-US_Seattle-2
+    environment:
+      - REGION=US_Seattle
+      - OPENVPN_USER
+      - VPNSP=private internet access
+    image: vpn
+    networks:
+      - proxy
+    restart: always
+    volumes:
+      - ./vpn/volumes/gluton/vpn-US_Seattle:/gluetun
+      - ./data:/data
+  vpn-US_West-1:
+    cap_add:
+      - NET_ADMIN
+    container_name: vpn-US_West-1
+    environment:
+      - REGION=US_West
+      - OPENVPN_USER
+      - VPNSP=private internet access
+    image: vpn
+    networks:
+      - proxy
+    restart: always
+    volumes:
+      - ./vpn/volumes/gluton/vpn-US_West:/gluetun
+      - ./data:/data
+version: '3'
