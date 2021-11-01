@@ -1,19 +1,19 @@
 {
   "name": "dynamic-docker-compose",
   "version": "1.0.0",
-  "main": "src/DockerComposeFile.mjs",
+  "main": "src/DockerComposeFile.js",
   "license": "MIT",
   "scripts": {
     "test": "yarn jest",
     "generate-docs": "rm -r docs/ && node_modules/.bin/jsdoc  --package '' --configure .jsdoc.json --verbose && mv docs/dynamic-docker-compose/*/* docs/ && rm -r docs/dynamic-docker-compose"
   },
   "dependencies": {
-    "clean-jsdoc-theme": "^3.2.10",
     "deepmerge": "^4.2.2",
-    "js-yaml": "^4.1.0",
-    "jsdoc": "^3.6.7"
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
+    "jsdoc": "^3.6.7",
+    "clean-jsdoc-theme": "^3.2.10",
     "@babel/core": "^7.15.0",
     "@babel/node": "^7.14.9",
     "@babel/preset-env": "^7.15.0",
