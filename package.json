@@ -1,8 +1,9 @@
 {
   "name": "dynamic-docker-compose",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "src/DockerComposeFile.js",
   "license": "MIT",
+  "repository": "https://github.com/Giftora/dynamic-docker-compose",
   "scripts": {
     "test": "yarn jest",
     "generate-docs": "rm -r docs/ && node_modules/.bin/jsdoc  --package '' --configure .jsdoc.json --verbose && mv docs/dynamic-docker-compose/*/* docs/ && rm -r docs/dynamic-docker-compose"
