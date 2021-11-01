@@ -54,17 +54,13 @@ class DockerComposeFile {
     }
 
     /**
-     * Merges the new yaml to the current yaml.
-     * @param {String} yamlString docker-compose file string to add.
+     * Merges the new yaml string to the current yaml also takes file paths or DockerComposeFiles.
+     * @type {String}
      */
     set yaml(yamlString) {
         return this.add(yamlString);
     }
 
-    /**
-     * Returns a yaml document.
-     * @returns {String} Yaml string.
-     */
     get yaml() {
         return yaml.dump(this.yamlObject, {'sortKeys': true}).trim();
     }
