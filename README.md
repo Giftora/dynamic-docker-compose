@@ -145,7 +145,7 @@ version: '3'
 ```
 
 # Mapping 
-DockerComposeFile can be mapped When template strings exist in the yaml file.
+DockerComposeFile can be mapped When template strings exist in the yaml file.  
 Template strings are in `${TEMPLATE_STRING}` format.
 
 ```yaml
