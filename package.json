@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "yarn jest",
-    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
+    "generate-docs": "node_modules/.bin/jsdoc  --package '' --configure .jsdoc.json --verbose && mv docs/dynamic-docker-compose/*/* docs/ && rm -r docs/dynamic-docker-compose"
   },
   "dependencies": {
     "clean-jsdoc-theme": "^3.2.10",
