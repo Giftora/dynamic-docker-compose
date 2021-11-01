@@ -7,7 +7,6 @@
     "test": "yarn jest"
   },
   "dependencies": {
-    "clone": "^2.1.2",
     "deepmerge": "^4.2.2",
     "js-yaml": "^4.1.0"
   },

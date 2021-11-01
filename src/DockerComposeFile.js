@@ -1,20 +1,31 @@
 import yaml from 'js-yaml';
 import fs from 'fs';
 import deepmerge from 'deepmerge'
-import { SIGUNUSED } from 'constants';
 
+/**
+ * Docker Compose File class.
+ * Represents the yaml object of a docker-compose file.
+ * Allows for merging and mapping of compose files.
+ */
 export default class DockerComposeFile {
     /**
      * Creates a DockerComposeFile instance with provided docker-compose.yml file or string.
-     * @param {String} composeFileString Either a path to a docker-compose.yml file or a yaml string.
+     * @param {String} composeFileString Either a path to a docker-compose.yml file or a full yaml string.
+     * @example
+     * const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml`);
+     * @example
+     * const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml`, `${__dirname}/docker-compose.vpn.yml`);
+     * @example 
+     * const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml, `version: '3'`);
+     * @returns {DockerComposeFile} DockerComposeFile instance with all passed files or strings yaml merged together.
      */
     constructor(...composeFiles) {
         this.add(...composeFiles);
     }
 
     /**
-     * Merges the provided compose files.
-     * @param composeFiles Any number of compose file paths or DockerComposeFile objects.
+     * Merges the provided compose files into the current yaml class object.
+     * @param {String} composeFiles Any number of compose file paths or DockerComposeFile objects.
      */
     add(...composeFiles) {
         for(let i = 0; i < composeFiles.length; i++) {

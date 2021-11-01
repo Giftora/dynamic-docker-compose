@@ -1,4 +1,4 @@
-import DockerComposeFile from '../src/DockerComposeFile.mjs';
+import DockerComposeFile from '../src/DockerComposeFile';
 import fs from 'fs';
 
 const composeFileMock =  {
