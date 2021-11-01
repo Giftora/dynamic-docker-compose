@@ -144,7 +144,7 @@ services:
 version: '3'
 ```
 
-# Mapping 
+## Mapping 
 DockerComposeFile can be mapped When template strings exist in the yaml file.  
 Template strings are in `${TEMPLATE_STRING}` format.
 
