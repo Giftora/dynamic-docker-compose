@@ -1,6 +1,6 @@
 {
   "name": "dynamic-docker-compose",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "src/DockerComposeFile.js",
   "license": "MIT",
   "repository": "https://github.com/Giftora/dynamic-docker-compose",
