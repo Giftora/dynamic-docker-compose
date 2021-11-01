@@ -25,7 +25,8 @@ export default class DockerComposeFile {
 
     /**
      * Merges the provided compose files into the current yaml class object.
-     * @param {String} composeFiles Any number of compose file paths or DockerComposeFile objects.
+     * @param {String|DockerComposeFile} composeFiles Any number of compose file paths or DockerComposeFile objects.
+     * @returns {String} Merged yaml string.
      */
     add(...composeFiles) {
         for(let i = 0; i < composeFiles.length; i++) {
@@ -39,10 +40,12 @@ export default class DockerComposeFile {
 
             this.yaml = yaml.load(composeFile);
         }
+        return this.yaml;
     }
 
     /**
-     * Merges the new yaml to the current DockerComposeFile
+     * Merges the new yaml to the current yaml.
+     * @param {unknown} yamlObject docker-compose file loaded using js-yaml.
      */
     set yaml(yamlObject) {
         this.yamlObject = deepmerge(this.yamlObject, yamlObject, { 
@@ -60,6 +63,7 @@ export default class DockerComposeFile {
 
     /**
      * Returns a yaml document.
+     * @returns {string} Yaml string.
      */
     get yaml() {
         return yaml.dump(this.yamlObject, {'sortKeys': true}).trim();
@@ -74,9 +78,27 @@ export default class DockerComposeFile {
     }
 
     /**
-     * Takes a template and generates an array of substituted docker compose files.
-     * @param substitutions Any number of arrays of template string in position one and an array of substitutions in position two. 
+     * Takes a docker-compose file with template strings and generates an array of substituted docker compose files.
+     * Only operates with arrays of substitutions of the same length.
+     * @param {Array<String, Array<String>>} substitutions Each set of substitutions an key and an array of values to map.
+     * @example
+     * // docker-compose file containing template strings for ${REGION} and ${ID}.
+     * const yamlString = 
+     * `
+     * services:
+     *   vpn-${REGION}-${ID}:
+     *     container_name: 'vpn-${REGION}-${ID}'
+     *     environment:
+     *       - REGION=${REGION}
+     * `;
+     * const composeFileTemplate = new DockerComposeFile(yamlString);
+     * // Will return a array of 2 compose files for each substitution.
+     * const composeFiles = composeFileTemplate.mapTemplate(
+     *    ['REGION', ['US_West', 'US_Seattle']],
+     *    ['ID', ['1', '2']]
+     * );
      * @returns Array of substituted docker compose files.
+     * @todo allow for variable length substitutions.
      */
     mapTemplate(...substitutions) {
         let composeTemplate = this.yaml;
