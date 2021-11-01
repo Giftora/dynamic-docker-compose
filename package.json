@@ -4,11 +4,14 @@
   "main": "src/DockerComposeFile.mjs",
   "license": "MIT",
   "scripts": {
-    "test": "yarn jest"
+    "test": "yarn jest",
+    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "dependencies": {
+    "clean-jsdoc-theme": "^3.2.10",
     "deepmerge": "^4.2.2",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "jsdoc": "^3.6.7"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

@@ -3,11 +3,11 @@ import fs from 'fs';
 import deepmerge from 'deepmerge'
 
 /**
- * Docker Compose File class.
- * Represents the yaml object of a docker-compose file.
- * Allows for merging and mapping of compose files.
+ * Docker Compose File class.  
+ * Represents the yaml object of a docker-compose file.  
+ * Allows for merging and mapping of compose files.  
  */
-export default class DockerComposeFile {
+class DockerComposeFile {
     /**
      * Creates a DockerComposeFile instance with provided docker-compose.yml file or string.
      * @param {String} composeFileString Either a path to a docker-compose.yml file or a full yaml string.
@@ -16,8 +16,8 @@ export default class DockerComposeFile {
      * @example
      * const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml`, `${__dirname}/docker-compose.vpn.yml`);
      * @example 
-     * const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml, `version: '3'`);
-     * @returns {DockerComposeFile} DockerComposeFile instance with all passed files or strings yaml merged together.
+     * const composeFile = new DockerComposeFile(`${__dirname}/docker-compose.yml, "version: '3'");
+     * @returns {DockerComposeFile} DockerComposeFile instance with all files or strings merged together.
      */
     constructor(...composeFiles) {
         this.add(...composeFiles);
@@ -38,32 +38,32 @@ export default class DockerComposeFile {
                 composeFile = fs.readFileSync(composeFile, 'utf8').trim();
             }
 
-            this.yaml = yaml.load(composeFile);
+            this.yamlObject = deepmerge(this.yamlObject, yaml.load(composeFile), { 
+                arrayMerge: (target, source, options) => {
+                    function onlyUnique(value, index, self) {
+                        return self.indexOf(value) === index;
+                    }
+                    
+                    return target.concat(source).filter(onlyUnique).map(function(element) {
+                        return options.cloneUnlessOtherwiseSpecified(element, options)
+                    })
+                }
+            });
         }
         return this.yaml;
     }
 
     /**
      * Merges the new yaml to the current yaml.
-     * @param {unknown} yamlObject docker-compose file loaded using js-yaml.
+     * @param {String} yamlString docker-compose file string to add.
      */
-    set yaml(yamlObject) {
-        this.yamlObject = deepmerge(this.yamlObject, yamlObject, { 
-            arrayMerge: (target, source, options) => {
-                function onlyUnique(value, index, self) {
-                    return self.indexOf(value) === index;
-                }
-                
-                return target.concat(source).filter(onlyUnique).map(function(element) {
-                    return options.cloneUnlessOtherwiseSpecified(element, options)
-                })
-            }
-        });
+    set yaml(yamlString) {
+        return this.add(yamlString);
     }
 
     /**
      * Returns a yaml document.
-     * @returns {string} Yaml string.
+     * @returns {String} Yaml string.
      */
     get yaml() {
         return yaml.dump(this.yamlObject, {'sortKeys': true}).trim();
@@ -115,3 +115,6 @@ export default class DockerComposeFile {
         return composeFiles.map((file) => new DockerComposeFile(file));
     }
 }
+
+
+export default DockerComposeFile;
