@@ -43,7 +43,10 @@ After you have created an instance of DockerComposeFile you can modify the YAML 
 Multiple files can be passed to the constructor 
 ```javascript
 import DockerComposeFile from '../src/DockerComposeFile';
-const composeFile = new DockerComposeFile(`${__dirname}/docker-compose1.yml`, `${__dirname}/docker-compose2.yml`);
+const composeFile = new DockerComposeFile(
+  `${__dirname}/docker-compose1.yml`, 
+  `${__dirname}/docker-compose2.yml`
+);
 ```  
 The contents are merged on like keys.  
 
