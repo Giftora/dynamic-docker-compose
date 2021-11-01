@@ -6,7 +6,7 @@ Yaml parsing is done with [js-yaml](https://www.npmjs.com/package/js-yaml).
 Object merging preformed by [deepmerge](https://www.npmjs.com/package/deepmerge)
 
 
-# Usage
+# Usage [jsdocs](https://giftora.github.io/dynamic-docker-compose/)
 Create an instance of the class like so.
 ```javascript
 import DockerComposeFile from '../src/DockerComposeFile';
