@@ -1,3 +1,6 @@
+NPM package
+https://www.npmjs.com/package/dynamic-docker-compose
+
 # dynamic-docker-compose
 Nodejs docker-compose class.  
 Loads one or more docker-compose files and parses the yaml contained within.  
