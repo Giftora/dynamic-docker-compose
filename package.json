@@ -20,5 +20,11 @@
     "@babel/preset-env": "^7.15.0",
     "jest": "^27.1.0"
   },
-  "type": "module"
+  "type": "module",
+  "keywords": [
+    "docker",
+    "docker-compose",
+    "yaml",
+    "merge"
+  ]
 }
